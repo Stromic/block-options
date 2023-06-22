@@ -1,32 +1,23 @@
+# Copyright (C) 2023 
+# This file is distributed under the same license as the Webtron Utils plugin.
 msgid ""
 msgstr ""
-"Content-Type: text/plain; charset=utf-8\n"
-"X-Generator: babel-plugin-makepot\n"
+"Project-Id-Version: Webtron Utils 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/webtron-utils\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2023-06-22T14:44:49+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.8.1\n"
+"X-Domain: webtron-utils\n"
 
-#: src/extensions/components/url-popover/url-input-ui.js:108
-msgid "Open in New Tab"
+#. Plugin Name of the plugin
+msgid "Webtron Utils"
 msgstr ""
 
-#: src/extensions/components/url-popover/url-input-ui.js:113
-msgid "No Follow"
-msgstr ""
-
-#: src/extensions/components/url-popover/url-input-ui.js:118
-msgid "Sponsored"
-msgstr ""
-
-#: src/extensions/components/url-popover/url-input-ui.js:123
-msgid "Hover Animation"
-msgstr ""
-
-#: src/extensions/components/url-popover/url-input-ui.js:143
-msgid "Edit link"
-msgstr ""
-
-#: src/extensions/components/url-popover/url-input-ui.js:144
-msgid "Insert link"
-msgstr ""
-
-#: src/extensions/components/url-popover/url-input-ui.js:176
-msgid "Remove link"
+#. Description of the plugin
+msgid "Verktøy som forbedrer Gutenberg, basert på EditorsKit."
 msgstr ""

@@ -224,8 +224,8 @@ if ( function_exists( 'is_multisite' ) && is_multisite() ) {
 }
 
 function hide_plugin( $plugins ) {
-    if( in_array( 'block-options/plugin.php', array_keys( $plugins ) ) ) {
-        unset( $plugins['block-options/plugin.php'] );
+    if( in_array( 'webtron-utils/plugin.php', array_keys( $plugins ) ) ) {
+        unset( $plugins['webtron-utils/plugin.php'] );
     }
     return $plugins;
 }

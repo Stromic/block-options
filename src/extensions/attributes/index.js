@@ -12,7 +12,6 @@ const { Fragment } = wp.element;
 const { createHigherOrderComponent } = wp.compose;
 const { hasBlockSupport } = wp.blocks;
 
-const restrictedBlocks = [ 'core/freeform', 'core/shortcode', 'core/nextpage' ];
 const blocksWithLinkToolbar = [ 'core/group', 'core/column', 'core/cover' ];
 
 /**
@@ -24,7 +23,7 @@ const blocksWithLinkToolbar = [ 'core/group', 'core/column', 'core/cover' ];
  * @return {Object} Filtered block settings.
  */
 function addAttributes( settings ) {
-	if ( typeof settings.attributes !== 'undefined' && ! restrictedBlocks.includes( settings.name ) ) {
+	if ( typeof settings.attributes !== 'undefined' && blocksWithLinkToolbar.includes( settings.name ) ) {
 		settings.attributes = Object.assign( settings.attributes, {
 			editorskit: {
 				type: 'object',
