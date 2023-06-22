@@ -19,7 +19,6 @@
  * Internal dependencies
  */
 import './extensions/attributes';
-import './extensions/block-panel';
 
 // //Block Toolbar
 import './extensions/block-toolbar';
