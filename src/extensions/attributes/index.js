@@ -13,12 +13,6 @@ const { createHigherOrderComponent } = wp.compose;
 const { hasBlockSupport } = wp.blocks;
 
 const restrictedBlocks = [ 'core/freeform', 'core/shortcode', 'core/nextpage' ];
-const blocksWithFullScreen = [ 'core/image', 'core/cover', 'core/group', 'core/columns', 'core/media-text' ];
-const blocksWithFontSize = [ 'core/list' ];
-const blocksWithBulletColor = [ 'core/list' ];
-const blocksWithAnchor = [ 'core/spacer', 'core/separator' ];
-const blocksWithBackgroundColor = [ 'core/columns', 'core/column' ];
-const blocksWithFullWidth = [ 'core/button' ];
 const blocksWithLinkToolbar = [ 'core/group', 'core/column', 'core/cover' ];
 
 /**
@@ -55,120 +49,6 @@ function addAttributes( settings ) {
 		settings.attributes = Object.assign( settings.attributes, {
 			blockOpts: { type: 'object' },
 		} );
-
-		// Add vertical full screen support.
-		if ( blocksWithFullScreen.includes( settings.name ) ) {
-			if ( ! settings.supports ) {
-				settings.supports = {};
-			}
-			settings.supports = Object.assign( settings.supports, {
-				hasHeightFullScreen: true,
-			} );
-		}
-
-		if ( hasBlockSupport( settings, 'hasHeightFullScreen' ) ) {
-			if ( typeof settings.attributes !== 'undefined' ) {
-				if ( ! settings.attributes.isHeightFullScreen ) {
-					settings.attributes = Object.assign( settings.attributes, {
-						isHeightFullScreen: {
-							type: 'boolean',
-							default: false,
-						},
-					} );
-				}
-			}
-		}
-
-		// Add full width display support.
-		if ( blocksWithFullWidth.includes( settings.name ) ) {
-			if ( ! settings.supports ) {
-				settings.supports = {};
-			}
-			settings.supports = Object.assign( settings.supports, {
-				hasFullWidthDisplay: true,
-			} );
-		}
-
-		if ( hasBlockSupport( settings, 'hasFullWidthDisplay' ) ) {
-			if ( typeof settings.attributes !== 'undefined' ) {
-				if ( ! settings.attributes.isFullWidth ) {
-					settings.attributes = Object.assign( settings.attributes, {
-						isFullWidth: {
-							type: 'boolean',
-							default: false,
-						},
-					} );
-				}
-			}
-		}
-
-		// Add custom font size picker on selected blocks.
-		if ( blocksWithFontSize.includes( settings.name ) ) {
-			if ( ! settings.attributes ) {
-				settings.attributes = {};
-			}
-			settings.attributes = Object.assign( settings.attributes, {
-				textColor: {
-					type: 'string',
-				},
-				customTextColor: {
-					type: 'string',
-				},
-				fontSize: {
-					type: 'string',
-				},
-				customFontSize: {
-					type: 'string',
-				},
-			} );
-		}
-
-		// Add Bullet Color
-		if ( blocksWithBulletColor.includes( settings.name ) ) {
-			if ( ! settings.attributes ) {
-				settings.attributes = {};
-			}
-			settings.attributes = Object.assign( settings.attributes, {
-				bulletColor: {
-					type: 'string',
-				},
-			} );
-		}
-
-		// Add background color on selected blocks.
-		if ( blocksWithBackgroundColor.includes( settings.name ) ) {
-			if ( ! settings.attributes ) {
-				settings.attributes = {};
-			}
-			settings.attributes = Object.assign( settings.attributes, {
-				backgroundColor: {
-					type: 'string',
-				},
-				customBackgroundColor: {
-					type: 'string',
-				},
-			} );
-		}
-
-		//enable anchor to selected blocks
-		if ( blocksWithAnchor.includes( settings.name ) ) {
-			if ( ! settings.supports ) {
-				settings.supports = {};
-			}
-			settings.supports = Object.assign( settings.supports, {
-				anchor: true,
-			} );
-		}
-
-		// Check if block has alignment attribute
-		if ( has( settings, 'attributes.align' ) || has( settings, 'attributes.textAlign' ) ) {
-			settings.attributes = Object.assign( settings.attributes, {
-				hasAlignmentOption: {
-					type: 'boolean',
-					default: true,
-				},
-			} );
-		}
 
 		// Add LinkToolbar Support
 		if ( blocksWithLinkToolbar.includes( settings.name ) || hasBlockSupport( settings, 'editorsKitLinkToolbar' ) ) {
@@ -240,46 +120,9 @@ const withAttributes = createHigherOrderComponent( ( BlockEdit ) => {
  */
 function applyExtraClass( extraProps, blockType, attributes ) {
 	const {
-		editorskit,
-		isHeightFullScreen,
-		isFullWidth,
 		href,
-		hasAnimation,
 	} = attributes;
 
-	if ( typeof editorskit !== 'undefined' && ! restrictedBlocks.includes( blockType.name ) ) {
-		if ( typeof editorskit.id !== 'undefined' ) {
-			extraProps.className = classnames( extraProps.className, editorskit.id );
-		}
-
-		if ( typeof editorskit.desktop !== 'undefined' && ! editorskit.desktop ) {
-			extraProps.className = classnames( extraProps.className, 'editorskit-no-desktop' );
-		}
-
-		if ( typeof editorskit.tablet !== 'undefined' && ! editorskit.tablet ) {
-			extraProps.className = classnames( extraProps.className, 'editorskit-no-tablet' );
-		}
-
-		if ( typeof editorskit.mobile !== 'undefined' && ! editorskit.mobile ) {
-			extraProps.className = classnames( extraProps.className, 'editorskit-no-mobile' );
-		}
-
-		if ( typeof editorskit.tabletAlignment !== 'undefined' && editorskit.tabletAlignment ) {
-			extraProps.className = classnames( extraProps.className, 'has-tablet-text-align-' + editorskit.tabletAlignment );
-		}
-
-		if ( typeof editorskit.mobileAlignment !== 'undefined' && editorskit.mobileAlignment ) {
-			extraProps.className = classnames( extraProps.className, 'has-mobile-text-align-' + editorskit.mobileAlignment );
-		}
-	}
-
-	if ( hasBlockSupport( blockType.name, 'hasHeightFullScreen' ) && isHeightFullScreen ) {
-		extraProps.className = classnames( extraProps.className, 'h-screen' );
-	}
-
-	if ( hasBlockSupport( blockType.name, 'hasFullWidthDisplay' ) && isFullWidth ) {
-		extraProps.className = classnames( extraProps.className, 'ek-w-full' );
-	}
 
 	if (
 		( blocksWithLinkToolbar.includes( blockType.name ) ||
@@ -288,10 +131,6 @@ function applyExtraClass( extraProps, blockType, attributes ) {
 		href
 	) {
 		extraProps.className = classnames( extraProps.className, 'ek-linked-block' );
-
-		if ( typeof hasAnimation !== 'undefined' && hasAnimation ) {
-			extraProps.className = classnames( extraProps.className, 'ek-linked-block-animate' );
-		}
 	}
 
 	return extraProps;
@@ -304,14 +143,6 @@ const addEditorBlockAttributes = createHigherOrderComponent( ( BlockListBlock ) 
 
 		let wrapperProps 	= props.wrapperProps;
 		let customData 	 	= {};
-
-		if ( hasBlockSupport( name, 'hasHeightFullScreen' ) && isHeightFullScreen ) {
-			customData = Object.assign( customData, { 'data-editorskit-h-screen': 1 } );
-		}
-
-		if ( hasBlockSupport( name, 'hasFullWidthDisplay' ) && isFullWidth ) {
-			customData = Object.assign( customData, { 'data-editorskit-w-full': 1 } );
-		}
 
 		wrapperProps = {
 			...wrapperProps,
