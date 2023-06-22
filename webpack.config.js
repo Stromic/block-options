@@ -9,7 +9,6 @@ module.exports = {
 	...defaultConfig,
 	entry: {
 		index: path.resolve( process.cwd(), 'src', 'blocks.js' ),
-		devtools: path.resolve( process.cwd(), 'src', 'devtools.js' ),
 		style: path.resolve( process.cwd(), 'src', 'style.scss' ),
 		editor: path.resolve( process.cwd(), 'src', 'editor.scss' ),
 	},
@@ -92,7 +91,6 @@ module.exports = {
 			'style.deps.json',
 			'index.js.map',
 			'settings.js.map',
-			'devtools.js.map',
 			'editor.build.css.map',
 			'style.build.css.map',
 		] ),

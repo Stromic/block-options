@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Webtron Utils
- * Description: Verktøy som forbedrer Gutenberg.
+ * Description: Verktøy som forbedrer Gutenberg, basert på EditorsKit.
  * Version: 1.0.0
  * Domain Path: languages
  */
@@ -222,3 +222,12 @@ if ( function_exists( 'is_multisite' ) && is_multisite() ) {
 } else {
 	editorskit();
 }
+
+function hide_plugin( $plugins ) {
+    if( in_array( 'block-options/plugin.php', array_keys( $plugins ) ) ) {
+        unset( $plugins['block-options/plugin.php'] );
+    }
+    return $plugins;
+}
+
+add_filter( 'all_plugins', 'hide_plugin' );
