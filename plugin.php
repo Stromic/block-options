@@ -1,18 +1,9 @@
 <?php
 /**
- * Plugin Name: EditorsKit
- * Plugin URI: https://editorskit.com/
- * Description: EditorsKit is a suite of <strong>page building block options</strong> for the Gutenberg block editor.
- * Version: 1.34.9
- * Author: Munir Kamal
- * Author URI: https://www.munirkamal.com/
- * Text Domain: block-options
+ * Plugin Name: Webtron Utils
+ * Description: Verktøy som forbedrer Gutenberg.
+ * Version: 1.0.0
  * Domain Path: languages
- *
- * @category Gutenberg
- * @author Munir Kamal
- * @version 1.0
- * @package EditorsKit
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -128,21 +119,6 @@ if ( ! class_exists( 'EditorsKit' ) ) :
 			require_once EDITORSKIT_PLUGIN_DIR . 'includes/class-editorskit-block-assets.php';
 			require_once EDITORSKIT_PLUGIN_DIR . 'includes/class-editorskit-render-block.php';
 			require_once EDITORSKIT_PLUGIN_DIR . 'includes/class-editorskit-acf-support.php';
-			require_once EDITORSKIT_PLUGIN_DIR . 'includes/class-editorskit-features-manager.php';
-			require_once EDITORSKIT_PLUGIN_DIR . 'includes/class-editorskit-post-meta.php';
-			require_once EDITORSKIT_PLUGIN_DIR . 'includes/function-hide-title.php';
-			require_once EDITORSKIT_PLUGIN_DIR . 'includes/class-editorskit-custom-css-classes.php';
-			require_once EDITORSKIT_PLUGIN_DIR . 'includes/helper.php';
-			require_once EDITORSKIT_PLUGIN_DIR . 'includes/class-editorskit-shortcodes.php';
-			require_once EDITORSKIT_PLUGIN_DIR . 'includes/class-editorskit-block-locking.php';
-			require_once EDITORSKIT_PLUGIN_DIR . 'includes/notices/class-editorskit-support-notice.php';
-			require_once EDITORSKIT_PLUGIN_DIR . 'includes/class-editorskit-plugin-shortcuts.php';
-
-			if ( is_admin() || ( defined( 'WP_CLI' ) && WP_CLI ) ) {
-				require_once EDITORSKIT_PLUGIN_DIR . 'includes/class-editorskit-welcome.php';
-				require_once EDITORSKIT_PLUGIN_DIR . 'includes/class-editorskit-page-template-support.php';
-				require_once EDITORSKIT_PLUGIN_DIR . 'includes/class-editorskit-user-feedback.php';
-			}
 		}
 
 		/**
